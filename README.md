@@ -76,3 +76,41 @@ make clean && make
 
 ### Version
 v4
+
+## Release 5 - I/O Redirection and Pipes
+
+Feature 5 adds input redirection, output redirection,
+and inter-process communication through pipes.
+
+### Features
+- Output redirection using >
+- Input redirection using <
+- Pipes using |
+- Multiple connected commands
+- Combined pipes and redirection
+- File and command error handling
+- Previous built-in commands and history preserved
+
+### Examples
+ls -l > file_list.txt
+sort < file_list.txt
+cat /etc/passwd | grep "root"
+cat /etc/passwd | grep root > root_users.txt
+
+### System Calls
+- open()
+- dup2()
+- close()
+- pipe()
+- fork()
+- execvp()
+- waitpid()
+
+### Build
+make clean && make
+
+### Run
+./bin/myshell
+
+### Version
+v5
