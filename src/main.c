@@ -1,3 +1,4 @@
+#include "io.h"
 #include "completion.h"
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -93,7 +94,7 @@ int main(void)
             else if (!handle_builtin(arglist))
             {
                 // External command
-                execute(arglist);
+                execute_io(input);
             }
 
             // Free tokenized arguments
