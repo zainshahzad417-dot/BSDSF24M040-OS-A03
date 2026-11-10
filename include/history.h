@@ -5,7 +5,7 @@
 
 void history_add(const char *command);
 void history_print(void);
-const char *history_get(long number);
+const char *shell_history_get(long number);
 void history_clear(void);
 
 #endif
