@@ -66,7 +66,7 @@ output = run_shell([
 ])
 
 assert "/tmp" in output
-assert "Job control not yet implemented" in output
+assert "No active background jobs." in output
 assert "Custom Shell Help" in output
 assert "Exiting custom shell" in output
 print("PASS: Feature 2 built-in commands")

@@ -109,7 +109,7 @@ with tempfile.TemporaryDirectory() as directory:
         "exit"
     ], folder)
 
-    assert "Job control not yet implemented" in output
+    assert "No active background jobs." in output
     assert "history" in output
     print("PASS: Previous features preserved")
 
