@@ -1,3 +1,4 @@
+#include "control.h"
 #define _POSIX_C_SOURCE 200809L
 
 #include "shell.h"
@@ -161,7 +162,15 @@ int main(void)
         history_add(input);
 
         // Feature 6: sequential and background commands.
-        multitask_execute(input, execute_segment);
+        if (strncmp(input, "if", 2) == 0 &&
+            (input[2] == '\0' ||
+             isspace((unsigned char)input[2]))) {
+
+            run_if_block(input, execute_segment);
+        }
+        else {
+            multitask_execute(input, execute_segment);
+        }
 
         free(cmdline);
     }
