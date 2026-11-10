@@ -1,3 +1,4 @@
+#include "variables.h"
 #include "jobs.h"
 #include "shell.h"
 
@@ -125,6 +126,14 @@ int handle_builtin(char** arglist)
     if (strcmp(arglist[0], "jobs") == 0)
     {
         jobs_print();
+        return 1;
+    }
+
+    
+    // Feature 8: Display shell variables.
+    if (strcmp(arglist[0], "set") == 0)
+    {
+        variables_print();
         return 1;
     }
 
