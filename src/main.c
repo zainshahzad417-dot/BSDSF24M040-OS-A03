@@ -1,3 +1,4 @@
+#include "variables.h"
 #include "control.h"
 #define _POSIX_C_SOURCE 200809L
 
@@ -26,35 +27,49 @@
  */
 static int execute_segment(const char *command, int background)
 {
+    // Feature 8: Assignment runs in the parent shell.
+    int assignment = variables_assign(command);
+
+    if (assignment == 1)
+        return 0;
+
+    if (assignment == -1)
+        return 1;
+
+    // Expand shell variables before execution.
+    char *expanded = variables_expand(command);
+
+    if (expanded == NULL)
+        return 1;
+
+    // Feature 6: Background execution.
     if (background) {
-        /*
-         * A supervising child manages the external command
-         * or pipeline. The main shell does not wait for it.
-         */
         pid_t pid = fork();
 
         if (pid < 0) {
             perror("fork");
+            free(expanded);
             return 1;
         }
 
         if (pid == 0) {
-            int result = execute_io(command);
-            _exit(result);
+            int status = execute_io(expanded);
+            free(expanded);
+            _exit(status);
         }
 
         jobs_add(pid, command);
+        free(expanded);
         return 0;
     }
 
-    /*
-     * Tokenize for built-in detection.
-     * Our existing built-ins remain in the parent.
-     */
-    char **arglist = tokenize((char *)command);
+    // Check built-in commands in the parent.
+    char **arglist = tokenize(expanded);
 
-    if (arglist == NULL)
+    if (arglist == NULL) {
+        free(expanded);
         return 0;
+    }
 
     int result = 0;
 
@@ -62,14 +77,15 @@ static int execute_segment(const char *command, int background)
         history_print();
     }
     else if (!handle_builtin(arglist)) {
-        result = execute_io(command);
+        result = execute_io(expanded);
     }
 
-    // Free tokenized arguments.
+    // Release tokenized argument memory.
     for (int i = 0; arglist[i] != NULL; i++)
         free(arglist[i]);
 
     free(arglist);
+    free(expanded);
 
     return result;
 }
@@ -175,6 +191,7 @@ int main(void)
         free(cmdline);
     }
 
+    variables_clear();
     history_clear();
 
     printf("\nShell exited.\n");

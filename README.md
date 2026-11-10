@@ -177,3 +177,39 @@ make clean && make
 
 ### Version
 v7
+
+## Release 8 - Shell Variables
+
+Feature 8 adds shell variable assignment, storage,
+expansion, reassignment, and display.
+
+### Features
+- Store variables using a linked list
+- Assign variables with VARNAME=value
+- Expand variables using $VARNAME
+- Reassign existing variables
+- Display stored variables using set
+- Support quoted values containing spaces
+- Use variables with command chaining and conditions
+- Manage dynamically allocated memory
+- Preserve all previous shell features
+
+### Examples
+MSG="hello"
+set
+echo $MSG
+MSG="goodbye"
+echo $MSG
+
+### Implementation
+- src/variables.c
+- include/variables.h
+
+### Build
+make clean && make
+
+### Run
+./bin/myshell
+
+### Version
+v8
