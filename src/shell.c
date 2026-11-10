@@ -1,3 +1,4 @@
+#include "jobs.h"
 #include "shell.h"
 
 char* read_cmd(char* prompt, FILE* fp) {
@@ -123,7 +124,7 @@ int handle_builtin(char** arglist)
     // Built-in 4: jobs (placeholder)
     if (strcmp(arglist[0], "jobs") == 0)
     {
-        printf("Job control not yet implemented.\n");
+        jobs_print();
         return 1;
     }
 

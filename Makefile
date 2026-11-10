@@ -1,7 +1,7 @@
 LDFLAGS = -lreadline
 CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
-SRC = src/main.c src/shell.c src/execute.c src/history.c src/completion.c src/io.c
+SRC = src/main.c src/shell.c src/execute.c src/history.c src/completion.c src/io.c src/jobs.c src/multitask.c
 TARGET = bin/myshell
 
 all: $(TARGET)

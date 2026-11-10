@@ -114,3 +114,40 @@ make clean && make
 
 ### Version
 v5
+
+## Release 6 - Command Chaining and Background Execution
+
+Feature 6 adds multitasking capabilities to the custom shell.
+
+### New Features
+- Sequential execution using ;
+- Background execution using &
+- Background job tracking with PIDs
+- Working jobs built-in command
+- Zombie process cleanup using waitpid() with WNOHANG
+- Support for background pipelines
+- Previous features preserved
+
+### Examples
+echo "First" ; sleep 2 ; echo "Second"
+sleep 10 &
+jobs
+sleep 5 & echo "Next"
+cat /etc/passwd | grep root
+
+### System Calls
+- fork()
+- waitpid()
+- WNOHANG
+- execvp()
+- pipe()
+- dup2()
+
+### Build
+make clean && make
+
+### Run
+./bin/myshell
+
+### Version
+v6
