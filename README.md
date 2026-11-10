@@ -151,3 +151,29 @@ make clean && make
 
 ### Version
 v6
+
+## Release 7 - if-then-else-fi Control Structure
+
+Feature 7 implements multi-line conditional execution.
+
+### Features
+- if condition checking
+- then block for successful commands
+- Optional else block
+- fi to terminate the structure
+- Conditional execution based on exit status
+- Multiple commands in each branch
+
+### Example
+if true
+then
+echo "Success"
+else
+echo "Failure"
+fi
+
+### Build
+make clean && make
+
+### Version
+v7
