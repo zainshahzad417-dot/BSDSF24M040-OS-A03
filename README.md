@@ -32,3 +32,23 @@ https://github.com/arifpucit/OS-Codes
 
 ## Version
 v1.0-base
+
+## Release 3 - Command History
+
+Feature 3 introduces an in-memory command history.
+
+### Features
+- Stores the 20 most recent commands
+- Displays numbered command history
+- Re-executes previous commands using !n
+- Handles invalid or unavailable history numbers
+- Retains existing built-in and external commands
+
+### Example
+pwd
+whoami
+history
+!1
+
+### Version
+v3

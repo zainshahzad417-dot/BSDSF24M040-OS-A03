@@ -109,6 +109,8 @@ int handle_builtin(char** arglist)
         printf("cd <directory> - Change current directory\n");
         printf("cd             - Go to home directory\n");
         printf("help           - Display built-in commands\n");
+        printf("history        - Show command history\n");
+        printf("!n             - Repeat command number n\n");
         printf("jobs           - Display job information\n");
         printf("=============================\n\n");
 
