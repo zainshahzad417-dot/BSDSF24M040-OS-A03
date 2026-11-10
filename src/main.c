@@ -1,3 +1,6 @@
+#include "completion.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 #include "shell.h"
 #include "history.h"
 #include <ctype.h>
@@ -5,10 +8,11 @@
 
 int main(void)
 {
+    completion_init();
     char *cmdline;
     char **arglist;
 
-    while ((cmdline = read_cmd(PROMPT, stdin)) != NULL)
+    while ((cmdline = readline(PROMPT)) != NULL)
     {
         // Ignore leading spaces
         char *input = cmdline;
@@ -43,7 +47,7 @@ int main(void)
                 continue;
             }
 
-            const char *previous = history_get(number);
+            const char *previous = shell_history_get(number);
 
             if (previous == NULL)
             {
@@ -72,6 +76,7 @@ int main(void)
         }
 
         // Store resolved command in history
+        add_history(input);
         history_add(input);
 
         // Tokenize the command

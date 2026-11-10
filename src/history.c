@@ -46,7 +46,7 @@ void history_print(void)
     }
 }
 
-const char *history_get(long number)
+const char *shell_history_get(long number)
 {
     long first_number = total_commands - stored_count + 1;
 

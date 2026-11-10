@@ -1,13 +1,14 @@
+LDFLAGS = -lreadline
 CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
-SRC = src/main.c src/shell.c src/execute.c src/history.c
+SRC = src/main.c src/shell.c src/execute.c src/history.c src/completion.c
 TARGET = bin/myshell
 
 all: $(TARGET)
 
 $(TARGET): $(SRC) include/shell.h
 	mkdir -p bin
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+	$(CC) $(CFLAGS) $(SRC) -o $(TARGET) $(LDFLAGS)
 
 clean:
 	rm -rf bin

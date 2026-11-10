@@ -52,3 +52,27 @@ history
 
 ### Version
 v3
+
+## Release 4 - GNU Readline Integration
+
+Feature 4 adds GNU Readline to the custom shell.
+
+### New Features
+- Up and Down Arrow command navigation
+- Tab completion for commands
+- Tab completion for filenames and directories
+- Interactive command-line editing
+- Previous built-in commands preserved
+- Previous command history and !n preserved
+
+### Dependency
+sudo apt install libreadline-dev
+
+### Build
+make clean && make
+
+### Run
+./bin/myshell
+
+### Version
+v4
