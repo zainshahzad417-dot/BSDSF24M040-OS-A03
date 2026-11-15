@@ -111,6 +111,7 @@ int handle_builtin(char** arglist)
         printf("cd <directory> - Change current directory\n");
         printf("cd             - Go to home directory\n");
         printf("help           - Display built-in commands\n");
+        printf("Variable usage: MSG=hello; echo $MSG\n");
         printf("Output redirection: command > file\n");
         printf("Input redirection: command < file\n");
         printf("Pipe: command1 | command2\n");
